@@ -111,22 +111,22 @@ df_vse = zavantazhuvaty_ta_oprobslyuvaty_dani_vhi()
 
 # Функції для прикладів використання
 def vhi(oblast, rik):
-    """Отримати значення VHI для вказаної області та року."""
+    #Отримати значення VHI для вказаної області та року.
     return df_vse[(df_vse["oblast"] == oblast) & (df_vse["Year"] == rik)]["VHI"]
 
 
 def vhi_min(oblast, rik):
-    """Отримати мінімальне значення VHI для вказаної області та року."""
+    #Отримати мінімальне значення VHI для вказаної області та року.
     return df_vse[(df_vse["oblast"] == oblast) & (df_vse["Year"] == rik)]["VHI"].min()
 
 
 def vhi_max(oblast, rik):
-    """Отримати максимальне значення VHI для вказаної області та року."""
+    #Отримати максимальне значення VHI для вказаної області та року.
     return df_vse[(df_vse["oblast"] == oblast) & (df_vse["Year"] == rik)]["VHI"].max()
 
 
 def vhi_diapazon(rik_poch, rik_kinec, oblasti):
-    """Отримати діапазон значень VHI по областям за вказаний проміжок років."""
+    #Отримати діапазон значень VHI по областям за вказаний проміжок років.
     if not isinstance(oblasti, list) or not oblasti:
         print("Порожній список або неправильний тип даних для областей")
         return None
@@ -138,7 +138,7 @@ def vhi_diapazon(rik_poch, rik_kinec, oblasti):
 
 
 def ekstremalni_zasukhy(procent):
-    """Знайти роки, коли екстремальні засухи (VHI<=15) торкнулися більшої частини областей."""
+    #Знайти роки, коли екстремальні засухи (VHI<=15) торкнулися більшої частини областей.
     df_zasukha = df_vse[(df_vse["VHI"] <= 15) & (df_vse["VHI"] != -1)]
     grupuvano = df_zasukha.groupby("Year")["oblast"].nunique()
     rezult = grupuvano[grupuvano > (25 * procent / 100)].reset_index()
@@ -146,7 +146,7 @@ def ekstremalni_zasukhy(procent):
 
 
 def umereni_zasukhy(procent, vmin=15, vmax=40):
-    """Знайти роки, коли помірні засухи (VHI в діапазоні [vmin, vmax]) торкнулися більшої частини областей."""
+    #Знайти роки, коли помірні засухи (VHI в діапазоні [vmin, vmax]) торкнулися більшої частини областей.
     df_zasukha = df_vse[(df_vse["VHI"] >= vmin) & (df_vse["VHI"] <= vmax)]
     grupuvano = df_zasukha.groupby("Year")["oblast"].nunique()
     kilkist_oblastej = df_vse["oblast"].nunique()
