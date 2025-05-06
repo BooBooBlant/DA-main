@@ -7,7 +7,7 @@ import requests
  
 
 def zahruzuvaty_dani_vhi():
-    """Завантаження даних VHI для 25 областей України."""
+    #Завантаження даних VHI для 25 областей України.
     for id_oblasti in range(1, 26):  # Для всіх 25 областей
         url = (
             f"https://www.star.nesdis.noaa.gov/smcd/emb/vci/VH/get_TS_admin.php?"
